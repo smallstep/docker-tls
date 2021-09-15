@@ -16,7 +16,9 @@ fi
 mkdir -p /run/secrets
 
 /cert-enroller.sh
-/cert-renewer.sh &
+if [ "$?" -eq 0 ]; then
+	/cert-renewer.sh &
+fi
 
 # TODO: Potentially add --tls flags to redis ($@) here.
 

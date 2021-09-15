@@ -1,8 +1,8 @@
 FROM smallstep/step-cli as step
 FROM redis
 COPY --from=step /usr/local/bin/step /usr/local/bin/
-ARG CA_URL=https://ca:4443
-ARG CA_FINGERPRINT=c8de28e620ec4367f734a0c405d92d7350dbec351cec3e4f6a6d1fc9512387aa
+ARG CA_URL
+ARG CA_FINGERPRINT
 ENV CA_URL=${CA_URL} CA_FINGERPRINT=${CA_FINGERPRINT} STEPPATH=/.step
 RUN step ca bootstrap --ca-url $CA_URL --fingerprint $CA_FINGERPRINT
 RUN apt-get update; \
