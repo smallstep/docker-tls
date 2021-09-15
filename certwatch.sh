@@ -8,7 +8,7 @@ while true; do
 	if [ -e $CERT_LOCATION ]; then
 		inotifywait -e modify $CERT_LOCATION
 		redis-cli --tls --insecure config set tls-cert-file $CERT_LOCATION
-		sleep 10
 	fi
+	sleep 10
 done
 

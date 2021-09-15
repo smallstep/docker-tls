@@ -13,12 +13,6 @@ if [ "$1" = 'redis-server' -a "$(id -u)" = '0' ]; then
 		    exec gosu redis "$0" "$@"
 fi
 
-if [ -z "$CA_BUNDLE" ]; then
-	export CA_BUNDLE=/run/secrets/ca.crt
-fi
-if [ -z "$CERT_LOCATION" ]; then
-	export CERT_LOCATION=/run/secrets/redis.crt
-fi
 /certwatch.sh &
 
 exec "$@"
