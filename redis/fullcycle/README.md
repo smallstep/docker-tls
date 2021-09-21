@@ -18,7 +18,7 @@ docker run -p 6379:6379 -p 80:80 -e TLS_SUBJECT=example.com $(docker images -q |
              --port 0 --tls-port 6379 \
              --tls-cert-file /run/tls/server.crt \
              --tls-key-file /run/tls/server.key \
-             --tls-ca-cert-file /.step/certs/root_ca.crt \
+             --tls-ca-cert-file /run/tls/ca.crt \
              --tls-auth-clients no
 ```
 

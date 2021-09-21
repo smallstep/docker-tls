@@ -14,3 +14,4 @@ fi
 echo >&2 "Using CA provisioner: ${CA_PROVISIONER_NAME}."
 step ca certificate $TLS_SUBJECT $TLS_CERT_LOCATION $TLS_KEY_LOCATION --provisioner ${CA_PROVISIONER_NAME}
 
+chown redis:redis $TLS_CERT_LOCATION $TLS_KEY_LOCATION

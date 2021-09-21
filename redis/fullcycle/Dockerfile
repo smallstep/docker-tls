@@ -8,10 +8,10 @@ RUN step ca bootstrap --ca-url $CA_URL --fingerprint $CA_FINGERPRINT
 RUN apt-get update; \
     apt-get install -y --no-install-recommends jq; \
     rm -rf /var/lib/apt/lists/*; \
-    mkdir -p /run/secrets; \
     mkdir -p /run/tls; \
-    chown -R redis:redis /run/secrets /run/tls /.step
+	cp /.step/certs/root_ca.crt /run/tls/ca.crt; \
+    chown -R redis:redis /run/tls /.step
 
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY entrypoint-shim.sh /usr/local/bin/
 COPY cert-*.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["entrypoint-shim.sh"]
