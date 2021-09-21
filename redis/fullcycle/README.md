@@ -14,7 +14,7 @@ docker build . --build-arg "CA_FINGERPRINT=c8de28e...620ecaa" \
 ### Run it:
 
 ```bash
-docker run -p 6379:6379 -p 80:80 -e TLS_SUBJECT=example.com fe5fc96 \
+docker run -p 6379:6379 -p 80:80 -e TLS_SUBJECT=example.com $(docker images -q | head -1) \
              --port 0 --tls-port 6379 \
              --tls-cert-file /run/tls/server.crt \
              --tls-key-file /run/tls/server.key \

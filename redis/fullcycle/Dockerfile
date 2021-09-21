@@ -13,7 +13,5 @@ RUN apt-get update; \
     chown -R redis:redis /run/secrets /run/tls /.step
 
 COPY docker-entrypoint.sh /usr/local/bin/
-COPY cert-enroller.sh /usr/local/bin/
-COPY cert-renewer.sh /usr/local/bin/
-COPY cert-reloader.sh /usr/local/bin/
+COPY cert-*.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]

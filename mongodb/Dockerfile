@@ -11,8 +11,5 @@ RUN mkdir -p /run/tls; \
     cp /.step/certs/root_ca.crt /run/tls/ca.crt; \
     chown -R mongodb:mongodb /run/tls /.step
 
-COPY entrypoint-shim.sh /usr/local/bin/
-COPY cert-enroller.sh /usr/local/bin/
-COPY cert-renewer.sh /usr/local/bin/
-COPY cert-reloader.sh /usr/local/bin/
+COPY entrypoint-shim.sh cert-*.sh /usr/local/bin/
 ENTRYPOINT ["entrypoint-shim.sh"]

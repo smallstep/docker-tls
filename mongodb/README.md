@@ -1,6 +1,6 @@
-## Redis TLS automatic cert management Docker image
+## MongoDBTLS automatic cert management Docker image
 
-Redis with [step](https://github.com/smallstep/cli) + baked-in CA certificate + ACME enrollment + [step-ca](https://github.com/smallstep/certificates) renewal + hot reloading of Redis server certificate on renewal
+MongoDB with [step](https://github.com/smallstep/cli) + baked-in CA certificate + ACME enrollment + [step-ca](https://github.com/smallstep/certificates) renewal + hot reloading of MongoDB server certificate on renewal
 
 ### Build it:
 
