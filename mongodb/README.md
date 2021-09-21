@@ -14,11 +14,9 @@ docker build . --build-arg "CA_FINGERPRINT=c8de28e...620ecaa" \
 ### Run it:
 
 ```bash
-docker run -p 6379:6379 -p 80:80 -e TLS_SUBJECT=example.com fe5fc96 \
-             --port 0 --tls-port 6379 \
-             --tls-cert-file /run/tls/server.crt \
-             --tls-key-file /run/tls/server.key \
-             --tls-ca-cert-file /.step/certs/root_ca.crt \
-             --tls-auth-clients no
+docker run -it -e TLS_SUBJECT=mongo.example.com -p 80:80 -p 27017:27017 $(docker images -q | head -1) \
+	--tlsMode requireTLS \
+	--tlsCAFile /run/tls/ca.crt \
+	--tlsCertificateKeyFile /run/tls/server.pem
 ```
 
