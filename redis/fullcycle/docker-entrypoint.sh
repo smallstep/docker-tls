@@ -13,11 +13,9 @@ if [ "$1" = 'redis-server' -a "$(id -u)" = '0' ]; then
 		    exec gosu redis "$0" "$@"
 fi
 
-mkdir -p /run/secrets
-
-/cert-enroller.sh
+/usr/local/bin/cert-enroller.sh
 if [ "$?" -eq 0 ]; then
-	/cert-renewer.sh &
+	/usr/local/bin/cert-renewer.sh &
 fi
 
 # TODO: Potentially add --tls flags to redis ($@) here.

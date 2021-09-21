@@ -12,5 +12,5 @@ if [ -z "$CA_PROVISIONER_NAME" ]; then
 fi
 
 echo >&2 "Using CA provisioner: ${CA_PROVISIONER_NAME}."
-step ca certificate $TLS_SUBJECT /run/secrets/server.crt /run/secrets/server.key --provisioner ${CA_PROVISIONER_NAME}
+step ca certificate $TLS_SUBJECT $TLS_CERT_LOCATION $TLS_KEY_LOCATION --provisioner ${CA_PROVISIONER_NAME}
 
