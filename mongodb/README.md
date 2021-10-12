@@ -14,8 +14,7 @@ docker build . --build-arg "CA_FINGERPRINT=c8de28e...620ecaa" \
 ### Run it:
 
 ```bash
-docker run -it -e TLS_SUBJECT=mongo.example.com -p 80:80 -p 27017:27017 $(docker images -q | head -1) \
+docker run -it -e TLS_DOMAINS=mongo.example.com,db.example.com -p 80:80 -p 27017:27017 $(docker images -q | head -1) \
 	--tlsMode requireTLS \
 	--tlsCertificateKeyFile /run/tls/server.pem
 ```
-
