@@ -39,6 +39,5 @@ flags=("${flags[@]}" "${tls_sans[@]}")
 
 
 step ca certificate $tls_subject $TLS_CERT_LOCATION $TLS_KEY_LOCATION ${flags[@]}
-cat $TLS_CERT_LOCATION $TLS_KEY_LOCATION > $TLS_PEM_LOCATION
-chown mongodb:mongodb $TLS_PEM_LOCATION
+/usr/local/bin/cert-post-enroll-hook.sh
 
