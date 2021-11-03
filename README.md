@@ -7,6 +7,6 @@ Here's a few Docker images that add full, self-contained TLS certificate managem
 - [MariaDB](https://github.com/smallstep/docker-tls/tree/main/mariadb)
 - [RabbitMQ](https://github.com/smallstep/docker-tls/tree/main/rabbitmq)
 
-All of these examples use the [`step-ca`](https://github.com/smallstep/certificates/) Certificate Authority server and the [`step`](https://github.com/smallstep/cli/) CLI tool for TLS certificate management. If you don't want to run your own CA, try our [Certificate Manager](https://smallstep.com/signup?product=cm) hosted CA to get going quickly. You'll need a CA url and root fingerprint to build these images.
+All of these examples use the [`step-ca`](https://github.com/smallstep/certificates/) Certificate Authority server and the [`step`](https://github.com/smallstep/cli/) CLI tool for TLS certificate management. If you don't want to run your own CA, try our [Certificate Manager](https://smallstep.com/signup?product=cm) hosted CA to get going quickly. You'll need your CA URL and root fingerprint to build these images.
 
-See [our blog post on TLS in Docker](https://smallstep.com/blog/automate-docker-ssl-tls-certificates/) for more context.
+See [our blog post on TLS in Docker](https://smallstep.com/blog/automate-docker-ssl-tls-certificates/) for more context and rationale on building custom images to support certificate management in a single, self-contained image.
