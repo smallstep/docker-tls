@@ -2,7 +2,7 @@
 
 A MariaDB image with [step](https://github.com/smallstep/cli) + baked-in CA certificate + ACME or JWK enrollment + [step-ca](https://github.com/smallstep/certificates) renewal + hot reloading of MariaDB certificates on renewal
 
-MariaDB supports hot reloading of certificates starting in version 10.4.
+MariaDB supports hot reloading of certificates starting in version 10.4, using the [`FLUSH SSL`](https://mariadb.com/kb/en/flush/#flush-ssl) command.
 
 ### Build it:
 
@@ -52,11 +52,11 @@ docker run -it -e MYSQL_ROOT_PASSWORD=my-secret-pw \
     --tls-version=TLSv1.2,TLSv1.3
 ```
 
-## Productionize it:
+## Production Considerations
 
-For production, create a `/run/secrets/root@localhost.cnf` [option file](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/), which the renewal hook script will use to look up the password for connecting to the database as `root` and running `FLUSH SSL`. The option file will need to be owned by the `mariadb` user and have `600` permissions.
-
-Also, use a `MYSQL_ROOT_PASSWORD_FILE` instead of a hardcoded password:
+- Create a non-root user that will reload your certificates. The user will need the `RELOAD` privilege.
+- Create a `/run/secrets/reloader@localhost.cnf` [option file](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/), which the renewal hook script will use to look up the password for connecting to the database to run [`FLUSH SSL`](https://mariadb.com/kb/en/flush/#flush-ssl). The option file will need to be owned by the `mysql` user and have `600` permissions.
+- Use a `MYSQL_ROOT_PASSWORD_FILE` instead of a hardcoded password:
 
 ```bash
 docker run -d -e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/password-file \

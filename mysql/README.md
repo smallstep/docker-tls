@@ -2,7 +2,7 @@
 
 A MySQL image with [step](https://github.com/smallstep/cli) + baked-in CA certificate + ACME or JWK enrollment + [step-ca](https://github.com/smallstep/certificates) renewal + hot reloading of MySQL certificates on renewal
 
-MySQL Community Server supports hot reloading of certificates as of [version 8.0.16](https://forums.mysql.com/read.php?3,674339,674339).
+MySQL Community Server supports hot reloading of certificates as of [version 8.0.16](https://forums.mysql.com/read.php?3,674339,674339), via [`ALTER INSTANCE RELOAD TLS`](https://dev.mysql.com/doc/refman/8.0/en/alter-instance.html).
 
 ### Build it:
 
@@ -56,9 +56,8 @@ docker run -it -e MYSQL_ROOT_PASSWORD=my-secret-pw \
     --tls-version=TLSv1.2,TLSv1.3
 ```
 
-## Productionize it:
+## Production Considerations
 
-For production, create a `/run/secrets/root@localhost.cnf` [option file](https://dev.mysql.com/doc/refman/8.0/en/option-files.html), which the renewal hook script will use to look up the password for connecting to the database as `root` and running `ALTER INSTANCE RELOAD TLS`. The option file will need to be owned by the `mysql` user and have `600` permissions.
-
-You can have a non-root database user reload the certificates. That user will need the `CONNECTION_ADMIN` privilege.
+- Create a non-root database user to reload the certificates. That user will need the `CONNECTION_ADMIN` privilege.
+- Create a `/run/secrets/root@localhost.cnf` [option file](https://dev.mysql.com/doc/refman/8.0/en/option-files.html), which the renewal hook script will use to look up the password for connecting to the database and running [`ALTER INSTANCE RELOAD TLS`](https://dev.mysql.com/doc/refman/8.0/en/alter-instance.html). The option file will need to be owned by the `mysql` user and have `600` permissions.
 
