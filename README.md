@@ -1,4 +1,4 @@
-# Seamless certificate automation with Docker and step-ca
+# Automatic TLS for Docker services, using step-ca
 
 Here's a few Docker images that add full, self-contained TLS certificate management to common Docker services:
 - [MongoDB](https://github.com/smallstep/docker-tls/tree/main/mongodb)
