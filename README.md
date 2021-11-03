@@ -3,6 +3,7 @@ Here's a few Docker images that add full, self-contained TLS certificate managem
 - [Nginx Unit](https://github.com/smallstep/docker-tls/tree/main/nginx-unit)
 - [Redis](https://github.com/smallstep/docker-tls/tree/main/redis)
 - [PostgreSQL](https://github.com/smallstep/docker-tls/tree/main/postgres)
+- [TimescaleDB](https://github.com/smallstep/docker-tls/tree/main/timescaledb)
 - [MySQL](https://github.com/smallstep/docker-tls/tree/main/mysql)
 - [MariaDB](https://github.com/smallstep/docker-tls/tree/main/mariadb)
 - [RabbitMQ](https://github.com/smallstep/docker-tls/tree/main/rabbitmq)
