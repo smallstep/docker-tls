@@ -9,7 +9,7 @@ Here's a few Docker images that add full, self-contained TLS certificate managem
 
 All of these examples use the [`step-ca`](https://github.com/smallstep/certificates/) Certificate Authority server. If you don't want to run your own CA, try our [Certificate Manager](https://smallstep.com/signup?product=cm) hosted CA to get going quickly.
 
-You'll need a Smallstep CA URL and root fingerprint to build these images.
+You'll need a CA URL and root fingerprint to build these images.
 
 Inside the container, the [`step`](https://github.com/smallstep/cli/) CLI tool performs certificate management functions.
 
