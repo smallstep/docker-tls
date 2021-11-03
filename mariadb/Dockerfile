@@ -1,6 +1,6 @@
 FROM smallstep/step-cli as step
 FROM mariadb
-# https://github.com/docker-library/mysql
+# https://github.com/MariaDB/mariadb-docker
 COPY --from=step /usr/local/bin/step /usr/local/bin/
 ARG CA_URL
 ARG CA_FINGERPRINT
