@@ -29,10 +29,6 @@ docker run -it --rm \
 
 Notice the use of `STEP_NOT_AFTER`. You can use `STEP_` environment variables to pass optional flags to the [`step ca certificate`](https://smallstep.com/docs/step-cli/reference/ca/certificate) command.
 
-When the container first starts, if there's no existing database in `/var/lib/mariadb`, it will initialize one.
-You'll see that it creates self-signed certificates as part of this process, but those will not be used.
-
-
 ### ACME enrollment
 
 Port 80 will need to be exposed in order to do enrollment with an `HTTP-01` ACME challenge via the default bridge network. You could alternatively expose port 80 to a different host port, and run a reverse proxy to pass ACME challenges from the `/.well-known/acme-challenge/<TOKEN>` endpoint into the container. Or, for TLS certificates that will be used for  interal traffic within a bridge or overlay network, you could run a CA or RA server within your container environment that offers ACME.
