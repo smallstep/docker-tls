@@ -59,5 +59,13 @@ docker run -it -e MYSQL_ROOT_PASSWORD=my-secret-pw \
 ## Production Considerations
 
 - Create a non-root database user to reload the certificates. That user will need the `CONNECTION_ADMIN` privilege.
-- Create a `/run/secrets/root@localhost.cnf` [option file](https://dev.mysql.com/doc/refman/8.0/en/option-files.html), which the renewal hook script will use to look up the password for connecting to the database and running [`ALTER INSTANCE RELOAD TLS`](https://dev.mysql.com/doc/refman/8.0/en/alter-instance.html). The option file will need to be owned by the `mysql` user and have `600` permissions.
+- Create a special `/run/secrets/root@localhost.cnf` [option file](https://dev.mysql.com/doc/refman/8.0/en/option-files.html), which the renewal hook script will use to look up the credentials for connecting to the database and running [`ALTER INSTANCE RELOAD TLS`](https://dev.mysql.com/doc/refman/8.0/en/alter-instance.html). The option file will need to be owned by the `mysql` user and have `600` permissions.
+
+  Here's an example `reloader@localhost.cnf`:
+
+  ```ini
+  [client]
+  username="reloader"
+  password="my-secret-pw"
+  ```
 

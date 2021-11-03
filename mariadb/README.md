@@ -55,18 +55,12 @@ docker run -it -e MYSQL_ROOT_PASSWORD=my-secret-pw \
 ## Production Considerations
 
 - Create a non-root user that will reload your certificates. The user will need the `RELOAD` privilege.
-- Create a `/run/secrets/reloader@localhost.cnf` [option file](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/), which the renewal hook script will use to look up the password for connecting to the database to run [`FLUSH SSL`](https://mariadb.com/kb/en/flush/#flush-ssl). The option file will need to be owned by the `mysql` user and have `600` permissions.
-- Use a `MYSQL_ROOT_PASSWORD_FILE` instead of a hardcoded password:
+- Create a special `/run/secrets/reloader@localhost.cnf` [option file](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/), which the renewal hook script will use to look up the credentials for connecting to the database to run [`FLUSH SSL`](https://mariadb.com/kb/en/flush/#flush-ssl). The option file will need to be owned by the `mysql` user and have `600` permissions.
 
-```bash
-docker run -d -e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/password-file \
-    -e TLS_DOMAINS=mariadb.example.com,db.example.com \
-	-p 80:80 -p 3306:3306 \
-    $(docker images -q | head -1) \
-    --require-secure-transport=ON \
-    --ssl-cert=/run/tls/server.crt \
-    --ssl-key=/run/tls/server.key \
-    --ssl-ca=/run/tls/ca.crt \
-    --tls-version=TLSv1.2,TLSv1.3
-```
+  Here's an example `reloader@localhost.cnf`:
 
+  ```ini
+  [client]
+  username="reloader"
+  password="my-secret-pw"
+  ```
