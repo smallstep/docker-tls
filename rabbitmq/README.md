@@ -32,7 +32,7 @@ To enroll the container using a JWK CA provisioner, pass a `CA_TOKEN` into the c
 docker run -d --name rabbitmq \
     -e TLS_DOMAINS=mysql.example.com,db.example.com \
     -e CA_TOKEN=$(step ca token rabbitmq.example.com --san rabbitmq.example.com --san mqtt.example.com) \
-    -p 3306:3306 \
+    -p 5671:5671 \
     (docker images -q | head -1) rabbitmq-server
 ```
 
