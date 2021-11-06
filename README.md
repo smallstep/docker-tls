@@ -1,5 +1,7 @@
 # Automatic TLS for Docker services, using `step`
 
+You should **read [our blog post on TLS in Docker](https://smallstep.com/blog/automate-docker-ssl-tls-certificates/)** for more context on why we've chosen to build single, self-contained custom images that add complete TLS certificate lifecycle automation.
+
 Here's a few Docker images that add self-contained, automated TLS certificate management to common Docker services:
 - [MongoDB](https://github.com/smallstep/docker-tls/tree/main/mongodb)
 - [Nginx Unit](https://github.com/smallstep/docker-tls/tree/main/nginx-unit)
@@ -15,5 +17,3 @@ All of these examples use the [`step-ca`](https://github.com/smallstep/certifica
 You'll need a CA URL and root fingerprint to build these images.
 
 Inside the container, the [`step`](https://github.com/smallstep/cli/) CLI tool performs certificate management functions.
-
-See [our blog post on TLS in Docker](https://smallstep.com/blog/automate-docker-ssl-tls-certificates/) for more context on why we've chosen to build single, self-contained custom images that add complete TLS certificate lifecycle automation.
